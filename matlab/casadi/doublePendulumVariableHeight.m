@@ -15,6 +15,13 @@ xR4 = [0.30; -0.03; 0.0];
 xL5 = [0.35; 0.03; 0.0];
 xR5 = [0.35; -0.03; 0.0];
 
+% xL1 = [0.00; 0.03; 0.0];
+% xR1 = [0.00; -0.03; 0.0];
+% xL2 = [0.05; 0.03; 0.0];
+% xR2 = [0.10; -0.03; 0.0];
+% xL3 = [0.15; 0.03; 0.0];
+% xR3 = [0.15; -0.03; 0.0];
+
 % xL1 = [0.0; 0.03; 0.0];
 % xR1 = [0.0; -0.03; 0.0];
 % xL2 = [0.05; 0.03; 0.0];
@@ -30,23 +37,24 @@ references.state.anticipation = 0.1;
 %use it to define the foot print
 constraints.cop = [-0.035, 0.035;  % x
                    -0.015, 0.015]; % y
-constraints.legLength = 0.15;
+constraints.legLength = 0.18;
 constraints.staticFriction = 0.5;
 constraints.torsionalFriction = 0.01;
 
 references.control = [0.0;
                       0.0;
-                      9.81/(2*(references.state.position(3) - xL5(3)));
+                      9.81/(2*(references.state.position(3) - xL3(3)));
                       0.0;
                       0.0;
-                      9.81/(2*(references.state.position(3) - xR5(3)))];
+                      9.81/(2*(references.state.position(3) - xR3(3)))];
 
-references.legLength = 0.15;
+references.legLength = 0.12;
                    
 
 %references.timings = [0.8; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.8]; 
 references.timings = 0.6*ones(17,1);
 
+% references.timings = 0.6*ones(9,1);
 
 activeFeet = [true, true;
               false, true;
@@ -65,7 +73,15 @@ activeFeet = [true, true;
               true, true;
               true, false;
               true, true;];
-
+% activeFeet = [true, true;
+%               false, true;
+%               true, true;
+%               true, false;
+%               true, true;
+%               false, true;
+%               true, true;
+%               true, false;
+%               true, true;];
 % activeFeet = [true, true;
 %               false, true;
 %               true, true;
@@ -98,6 +114,16 @@ feetLocations = {xL1, xR1;     %true, true
 %                  xL2, xR1;     %false, true
 %                  xL2, xR1;     %true, true
 %                  xL2, xR1;     %true, false
+%                  xL2, xR2;     %true, true
+%                  xL3, xR2;     %false, true
+%                  xL3, xR2;     %true, true
+%                  xL3, xR2;     %true, false
+%                  xL3, xR3;};   %true, true
+
+% feetLocations = {xL1, xR1;     %true, true
+%                  xL2, xR1;     %false, true
+%                  xL2, xR1;     %true, true
+%                  xL2, xR1;     %true, false
 %                  xL2, xR2;};   %true, true
 
              
@@ -114,6 +140,15 @@ weights.finalState = 10;
 weights.u = 0.1/N;
 weights.cop = 10/N;
 weights.copVariation = 0./N;
+weights.controlVariation = 40/N;
+weights.finalControl = 1;
+weights.torques = 1/N;
+
+weights.time = 1;
+weights.finalState = 10;
+weights.u = 0.1/N;
+weights.cop = 5e6/N;
+weights.copVariation = 5e4/N;
 weights.controlVariation = 40/N;
 weights.finalControl = 1;
 weights.torques = 1/N;
