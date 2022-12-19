@@ -167,3 +167,4 @@ plotOptiSolutionForDoublePendulum(xsol, usol, t_sol);
 plotOptiFeetStepsForDoublePendulum(feetLocations, t_sol, constraints.cop, xsol)
 plotOptiDCM(xsol, usol, t_sol, sqrt(9.81/references.legLength))
 plotOptiDCMonFeetSteps(feetLocations, t_sol, constraints.cop, xsol, sqrt(9.81/references.legLength))
+exportResultsToCsv(xsol, t_sol, activeFeet, feetLocations)
