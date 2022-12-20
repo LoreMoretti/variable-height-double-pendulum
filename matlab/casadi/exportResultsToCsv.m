@@ -19,8 +19,8 @@ timings = [0; cumsum(round(t_sol,2))];
 contact_flag = double(activeFeet);
 contact_flag = [1,1;
     contact_flag];
-contact_flag_left = interp1(timings, contact_flag(:,1), t, "previous");
-contact_flag_right = interp1(timings, contact_flag(:,2), t, "previous");
+contact_flag_left = interp1(timings, contact_flag(:,1), t, "next");
+contact_flag_right = interp1(timings, contact_flag(:,2), t, "next");
 
 foot_location_left = reshape(cell2mat(feetLocations(:,1)),3,[])';
 foot_location_left = [foot_location_left(1,:);
@@ -28,12 +28,12 @@ foot_location_left = [foot_location_left(1,:);
 foot_location_right = reshape(cell2mat(feetLocations(:,2)),3,[])';
 foot_location_right = [foot_location_right(1,:);
     foot_location_right];
-x_foot_location_left = interp1(timings, foot_location_left(:,1), t, "previous");
-y_foot_location_left = interp1(timings, foot_location_left(:,2), t, "previous");
-z_foot_location_left = interp1(timings, foot_location_left(:,3), t, "previous");
-x_foot_location_right = interp1(timings, foot_location_right(:,1), t, "previous");
-y_foot_location_right = interp1(timings, foot_location_right(:,2), t, "previous");
-z_foot_location_right = interp1(timings, foot_location_right(:,3), t, "previous");
+x_foot_location_left = interp1(timings, foot_location_left(:,1), t, "next");
+y_foot_location_left = interp1(timings, foot_location_left(:,2), t, "next");
+z_foot_location_left = interp1(timings, foot_location_left(:,3), t, "next");
+x_foot_location_right = interp1(timings, foot_location_right(:,1), t, "next");
+y_foot_location_right = interp1(timings, foot_location_right(:,2), t, "next");
+z_foot_location_right = interp1(timings, foot_location_right(:,3), t, "next");
 
 % write header
 filename = 'TestTrajectory.csv';
