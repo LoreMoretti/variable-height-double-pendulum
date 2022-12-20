@@ -1,5 +1,6 @@
 function exportResultsToCsv(xsol, t_sol, activeFeet, feetLocations)
 
+mass = 1.5; %[kg]
 
 time = 0.0;
 numberOfPhases = length(t_sol);
@@ -14,6 +15,12 @@ t = (time(1):ts:round(time(end),2))';
 xCOM = interp1(time, xsol(1,:), t);
 yCOM = interp1(time, xsol(2,:), t);
 zCOM = interp1(time, xsol(3,:), t);
+vxCOM = interp1(time, xsol(4,:), t);
+vyCOM = interp1(time, xsol(5,:), t);
+vzCOM = interp1(time, xsol(6,:), t);
+hxCOM = vxCOM * mass;
+hyCOM = vyCOM * mass;
+hzCOM = vzCOM * mass;
 
 timings = [0; cumsum(round(t_sol,2))];
 contact_flag = double(activeFeet);
@@ -37,7 +44,7 @@ z_foot_location_right = interp1(timings, foot_location_right(:,3), t, "next");
 
 % write header
 filename = 'TestTrajectory.csv';
-header_string = 'time, contact status left, contact status right, pc-x left, pc-y left, pc-z left, pc-x right, pc-y right, pc-z right, x-COM, y-COM, z-COM';
+header_string = 'time, contact_status_left, contact_status_right, pc-x_left, pc-y_left, pc-z_left, pc-x_right, pc-y_right, pc-z_right, x-COM, y-COM, z-COM, h_x, h_y, h_z';
 fid = fopen(filename,'w');
 fprintf(fid,'%s\r\n',header_string);
 fclose(fid);
@@ -46,7 +53,7 @@ fclose(fid);
 m = [t, contact_flag_left, contact_flag_right, ...
     x_foot_location_left, y_foot_location_left, z_foot_location_left, ...
     x_foot_location_right, y_foot_location_right, z_foot_location_right, ...
-    xCOM, yCOM, zCOM];
+    xCOM, yCOM, zCOM, hxCOM, hyCOM, hzCOM];
 
 dlmwrite(filename, m,'-append','delimiter',',');
 end
