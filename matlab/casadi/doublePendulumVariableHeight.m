@@ -93,19 +93,19 @@ if (jump)
 end
     
 feetLocations = {xL1, xR1;     %true, true
-                 xL2, xR1;     %false, true
+                 xL1, xR1;     %false, true
                  xL2, xR1;     %true, true
                  xL2, xR1;     %true, false
                  xL2, xR2;     %true, true
-                 xL3, xR2;     %false, true
+                 xL2, xR2;     %false, true
                  xL3, xR2;     %true, true
                  xL3, xR2;     %true, false
                  xL3, xR3;     %true, true
-                 xL4, xR3;     %false, true
+                 xL3, xR3;     %false, true
                  xL4, xR3;     %true, true
                  xL4, xR3;     %true, false
                  xL4, xR4;     %true, true
-                 xL5, xR4;     %false, true
+                 xL4, xR4;     %false, true
                  xL5, xR4;     %true, true
                  xL5, xR4;     %true, false
                  xL5, xR5;};   %true, true
