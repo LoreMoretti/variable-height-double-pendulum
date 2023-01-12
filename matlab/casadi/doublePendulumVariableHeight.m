@@ -4,16 +4,16 @@ clear all
 jump = false;
 
 %steps poses
-xL1 = [0.00; 0.03; 0.0];
-xR1 = [0.00; -0.03; 0.0];
-xL2 = [0.05; 0.03; 0.0];
-xR2 = [0.10; -0.03; 0.0];
-xL3 = [0.15; 0.03; 0.0];
-xR3 = [0.20; -0.03; 0.0];
-xL4 = [0.25; 0.03; 0.0];
-xR4 = [0.30; -0.03; 0.0];
-xL5 = [0.35; 0.03; 0.0];
-xR5 = [0.35; -0.03; 0.0];
+xL1 = [0.00; 0.02; 0.0];
+xR1 = [0.00; -0.02; 0.0];
+xL2 = [0.05; 0.02; 0.0];
+xR2 = [0.10; -0.02; 0.0];
+xL3 = [0.15; 0.02; 0.0];
+xR3 = [0.20; -0.02; 0.0];
+xL4 = [0.25; 0.02; 0.0];
+xR4 = [0.30; -0.02; 0.0];
+xL5 = [0.35; 0.02; 0.0];
+xR5 = [0.35; -0.02; 0.0];
 
 % xL1 = [0.00; 0.03; 0.0];
 % xR1 = [0.00; -0.03; 0.0];
@@ -30,14 +30,14 @@ xR5 = [0.35; -0.03; 0.0];
 initialState.position = [0.0; 0.0; 0.15];
 initialState.velocity = [0.0; 0.0; 0.0];
 
-references.state.position = [0.4; 0.0; 0.13];
+references.state.position = [0.4; 0.0; 0.15];
 references.state.velocity = [0.0; 0.0; 0.0];
 references.state.anticipation = 0.1;
 
 %use it to define the foot print
 constraints.cop = [-0.015, 0.015;  % x
                    -0.010, 0.010]; % y
-constraints.legLength = 0.18;
+constraints.legLength = 0.16;
 constraints.staticFriction = 0.5;
 constraints.torsionalFriction = 0.01;
 
