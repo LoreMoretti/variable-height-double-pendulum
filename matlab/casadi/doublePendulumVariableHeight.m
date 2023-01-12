@@ -30,13 +30,13 @@ xR5 = [0.35; -0.03; 0.0];
 initialState.position = [0.0; 0.0; 0.15];
 initialState.velocity = [0.0; 0.0; 0.0];
 
-references.state.position = [0.4; 0.0; 0.15];
+references.state.position = [0.4; 0.0; 0.13];
 references.state.velocity = [0.0; 0.0; 0.0];
 references.state.anticipation = 0.1;
 
 %use it to define the foot print
-constraints.cop = [-0.035, 0.035;  % x
-                   -0.015, 0.015]; % y
+constraints.cop = [-0.015, 0.015;  % x
+                   -0.010, 0.010]; % y
 constraints.legLength = 0.18;
 constraints.staticFriction = 0.5;
 constraints.torsionalFriction = 0.01;
@@ -48,7 +48,7 @@ references.control = [0.0;
                       0.0;
                       9.81/(2*(references.state.position(3) - xR3(3)))];
 
-references.legLength = 0.12;
+references.legLength = 0.13;
                    
 
 %references.timings = [0.8; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.2; 1; 0.8]; 

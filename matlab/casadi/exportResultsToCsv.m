@@ -54,7 +54,7 @@ CoP_right = interp1(time(1:end-1)', CoP_right', t, 'linear','extrap');
 
 %export forces (at CoP);  
 COM = [xCOM, yCOM, zCOM];
-mass = 1.5; %[kg]
+
 R = eye(3); %foot is alligned with inertial frame
 u_left = interp1(time(1:end-1)', usol(3,:)', t, 'linear','extrap'); % left force multiplier 
 u_right = interp1(time(1:end-1)', usol(6,:)', t, 'linear','extrap'); % right force multiplier 
@@ -66,8 +66,8 @@ Tz = zeros(size(t));
 t_steps = numel(t);
 xCoP = CoP_left(:,1);
 yCoP = CoP_left(:,2);
-lx = 0.7;
-ly = 0.3;
+lx = 0.03;
+ly = 0.02;
 mu = 0.5;
 F_contact_left_vertices = getContactForcesPerVertex(t_steps, F_left(:,1), F_left(:,2), F_left(:,3), Tz, xCoP, yCoP, lx, ly, mu);
 xCoP = CoP_right(:,1);

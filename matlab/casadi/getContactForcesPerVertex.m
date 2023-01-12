@@ -4,22 +4,10 @@ import casadi.*
 
 opti = casadi.Opti();
 
-% t_steps = 400;
 f = opti.variable(12,t_steps);
 fx = f(1:3:10,:);
 fy = f(2:3:11,:);
 fz = f(3:3:12,:);
-% 
-% Fz = 7.8*ones(t_steps,1);
-% Fx = 0*ones(t_steps,1);
-% Fy = 1.34*ones(t_steps,1);
-% Tz = 0*ones(t_steps,1);
-% ly = 0.03;
-% lx = 0.07;
-% xCoP = lx/4*ones(t_steps,1);
-% yCoP = 0*ones(t_steps,1);
-
-% mu=0.5;
 
 cost = 0;
 for j=1:t_steps
