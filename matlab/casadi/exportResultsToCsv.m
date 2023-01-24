@@ -10,8 +10,8 @@ for i = 1 : numberOfPhases
 end
 
 % resample
-ts = 0.01; %[s]
-t = (time(1):ts:round(time(end),2))';
+ts = 0.025; %[s]
+t = (time(21):ts:round(time(end),2))';
 xCOM = interp1(time, xsol(1,:), t);
 yCOM = interp1(time, xsol(2,:), t);
 zCOM = interp1(time, xsol(3,:), t);
@@ -95,7 +95,7 @@ fprintf(fid,'%s\r\n',header_string);
 fclose(fid);
 
 %write data
-m = [t, contact_flag_left, contact_flag_right, ...
+m = [t-t(1), contact_flag_left, contact_flag_right, ...
     x_foot_location_left, y_foot_location_left, z_foot_location_left, ...
     x_foot_location_right, y_foot_location_right, z_foot_location_right, ...
     xCOM, yCOM, zCOM, hxCOM, hyCOM, hzCOM, F_left, F_right,...
