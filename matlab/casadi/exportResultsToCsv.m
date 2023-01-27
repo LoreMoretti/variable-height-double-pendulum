@@ -101,5 +101,5 @@ m = [t-t(1), contact_flag_left, contact_flag_right, ...
     xCOM, yCOM, zCOM, hxCOM, hyCOM, hzCOM, F_left, F_right,...
     transpose(F_contact_left_vertices), transpose(F_contact_right_vertices)];
 
-dlmwrite(filename, m,'-append','delimiter',',');
+writematrix(m, filename,'WriteMode','append','delimiter',',');
 end
