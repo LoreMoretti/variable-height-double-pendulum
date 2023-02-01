@@ -18,19 +18,30 @@ for j=1:t_steps
     c = ly/2-yCoP(j);
     d = ly/2+yCoP(j);
 
+    if a == 0 || c == 0
+        error("COP is on one of the foot edges")
+    end
+
     for i = 1:4
       
        cost = cost + 0.5*sumsqr(mean(F_contact,2) - ...
            [fx(i,j);fy(i,j);fz(i,j)]);
     end
 
-
+    opti.subject_to( fx(1,j)>=-mu*fz(1,j))
+    opti.subject_to( fx(2,j)>=-mu*fz(2,j))
+    opti.subject_to( fx(3,j)>=-mu*fz(3,j))
+    opti.subject_to( fx(4,j)>=-mu*fz(4,j))
     opti.subject_to( fx(1,j)<=mu*fz(1,j))
     opti.subject_to( fx(2,j)<=mu*fz(2,j))
     opti.subject_to( fx(3,j)<=mu*fz(3,j))
     opti.subject_to( fx(4,j)<=mu*fz(4,j))
     opti.subject_to( (fx(1,j)+fx(2,j)+fx(3,j)+fx(4,j)) == Fx(j) );
-    
+
+    opti.subject_to( fy(1,j)>=-mu*fz(1,j))
+    opti.subject_to( fy(2,j)>=-mu*fz(2,j))
+    opti.subject_to( fy(3,j)>=-mu*fz(3,j))
+    opti.subject_to( fy(4,j)>=-mu*fz(4,j))    
     opti.subject_to( fy(1,j)<=mu*fz(1,j))
     opti.subject_to( fy(2,j)<=mu*fz(2,j))
     opti.subject_to( fy(3,j)<=mu*fz(3,j))
@@ -46,6 +57,7 @@ for j=1:t_steps
     opti.subject_to( fz(2,j)>0 );
     opti.subject_to( fz(3,j)>0 );
     opti.subject_to( fz(4,j)>0 );
+
     opti.subject_to( (fz(1,j)+fz(2,j)) == b/a*(fz(3,j)+fz(4,j)) );
     opti.subject_to( (fz(1,j)+fz(4,j)) == d/c*(fz(2,j)+fz(3,j)) );
     opti.subject_to( (fz(1,j)+fz(2,j)+fz(3,j)+fz(4,j)) == Fz(j) );
